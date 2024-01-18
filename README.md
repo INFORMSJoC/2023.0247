@@ -1,6 +1,6 @@
 [![INFORMS Journal on Computing Logo](https://INFORMSJoC.github.io/logos/INFORMS_Journal_on_Computing_Header.jpg)](https://pubsonline.informs.org/journal/ijoc)
 
-# CacheTest
+# Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions
 
 This archive is distributed in association with the [INFORMS Journal on
 Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](LICENSE).
@@ -17,9 +17,9 @@ get an author-maintained version or would like support**
 
 To cite the contents of this repository, please cite both the paper and this repo, using their respective DOIs.
 
-https://doi.org/10.1287/ijoc.2019.0000
+https://doi.org/????
 
-https://doi.org/10.1287/ijoc.2019.0000.cd
+https://doi.org/????
 
 Below is the BibTex for citing this snapshot of the respoitory.
 
