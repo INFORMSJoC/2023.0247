@@ -17,9 +17,9 @@ get an author-maintained version or would like support**
 
 To cite the contents of this repository, please cite both the paper and this repo, using their respective DOIs.
 
-https://doi.org/????
+https://doi.org/10.1287/ijoc.2023.0247
 
-https://doi.org/????
+https://doi.org/10.1287/ijoc.2023.0247.cd
 
 Below is the BibTex for citing this snapshot of the respoitory.
 
@@ -29,7 +29,7 @@ Below is the BibTex for citing this snapshot of the respoitory.
   publisher =     {INFORMS Journal on Computing},
   title =         {{Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions}},
   year =          {2024},
-  doi =           {10.1287/},
+  doi =           {10.1287/ijoc.2023.0247.cd},
   url =           {https://github.com/INFORMSJoC/2023.0247},
 }  
 ```
