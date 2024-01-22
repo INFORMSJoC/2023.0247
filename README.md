@@ -1,6 +1,6 @@
 [![INFORMS Journal on Computing Logo](https://INFORMSJoC.github.io/logos/INFORMS_Journal_on_Computing_Header.jpg)](https://pubsonline.informs.org/journal/ijoc)
 
-# Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions
+# Convergence Rates of Zeroth-order Gradient Descent (ZGD) for Łojasiewicz Functions
 
 This archive is distributed in association with the [INFORMS Journal on
 Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](LICENSE). This is a code repo for experiments in the paper "Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions'' by Tianyu Wang and Yasong Feng.
@@ -58,9 +58,9 @@ In the above code block, eta is the learning rate, k is the number of random dir
 
 ## Results
 
-All results have been reported in the paper Section 6 and the Appendix. As an example, running the codes with large = True, eta = 0.005, and k = 1,10,20,30 gives the following figure. 
+All results have been reported in the paper Section 6 and the Appendix. As an example, running the codes with large = True, eta = 0.005, and k = 1,10,20,30 gives the following figure. In the figure, lines labelled "k = 1" (resp., k = 10,20,30) plots the results of ZGD with k = 1 (resp. k=10,20,30), and the line labelled "GD" plots the results of gradient descent. 
 
-![test](./example.png)
+![example](./example.png)
 
 
 ## Ongoing Development
