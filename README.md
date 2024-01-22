@@ -39,7 +39,7 @@ Below is the BibTex for citing this snapshot of the respoitory.
 
 - To run the code, you will need to make sure that you have already installed [Anaconda3](https://www.anaconda.com/). 
 
-The python script "exp.py" and python notebook "exp.ipynb" contains codes for experiments in the main text of the paper, and the files "exp-linesearch.nb" and "exp-linesearch.ipynb" contain codes for experiments in the appendix of the paper. 
+The python script "exp.py" and python notebook "exp.ipynb" contain codes for experiments in the main text of the paper, and the files "exp-linesearch.nb" and "exp-linesearch.ipynb" contain codes for experiments in the appendix of the paper. 
 
 The easiest way to replicate the results in the paper is the following. Directly executing "exp.ipynb" cell-by-cell and "exp-linesearch.ipynb" cell-by-cell will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" cell-by-cell and "plotting-linesearch.ipynb" cell-by-cell will save plots in the "figures" folder. 
 
