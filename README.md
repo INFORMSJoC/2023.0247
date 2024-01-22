@@ -58,7 +58,10 @@ In the above code block, eta is the learning rate, k is the number of random dir
 
 ## Results
 
-All results have been reported in the paper Section 6 and the Appendix. As an example, running 
+All results have been reported in the paper Section 6 and the Appendix. As an example, running the codes with large = True, eta = 0.005, and k = 1,10,20,30 gives the following figure. 
+
+![plot](./directory_1/directory_2/.../directory_n/plot.png)
+
 
 ## Ongoing Development
 
