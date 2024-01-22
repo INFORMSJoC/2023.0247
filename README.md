@@ -17,32 +17,42 @@ get an author-maintained version or would like support**
 
 To cite the contents of this repository, please cite both the paper and this repo, using their respective DOIs.
 
-https://doi.org/????
+https://doi.org/10.1287/ijoc.2023.0247
 
-https://doi.org/????
+https://doi.org/10.1287/ijoc.2023.0247.cd
 
 Below is the BibTex for citing this snapshot of the respoitory.
 
 ```
-@article{CacheTest,
+@article{wf2024loj,
   author =        {Tianyu Wang and Yasong Feng},
   publisher =     {INFORMS Journal on Computing},
   title =         {{Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions}},
   year =          {2024},
-  doi =           {10.1287/},
+  doi =           {10.1287/ijoc.2023.0247.cd},
   url =           {https://github.com/INFORMSJoC/2023.0247},
 }  
 ```
 
 ## Description
 
-code for experiments in the paper "Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions'' by Tianyu Wang and Yasong Feng.
+This is a code repo for experiments in the paper "Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions'' by Tianyu Wang and Yasong Feng.
 
-The file "exp.ipynb" contains codes for experiments in the main text of the paper, and the file "exp-linesearch.ipynb" contains codes for experiments in the appendix of the paper.
+The file "exp.ipynb" contains codes for experiments in the main text of the paper, and the file "exp-linesearch.ipynb" contains codes for experiments in the appendix of the paper. 
 
 Running "exp.ipynb" and "exp-linesearch.ipynb" will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" and "plotting-linesearch.ipynb" will save plots in the "figures" folder.
 
+All of the python scripts were developed in Python 3.8+ environments. 
+
 You may need to manually create the folder "raw_data" and or "figures" on your local repo.
+
+## Replicating
+
+- To run the code, you will need to make sure that you have already installed Anaconda3.
+
+## Results
+
+All results have been reported in the paper Section 6 and the Appendix. 
 
 ## Ongoing Development
 
