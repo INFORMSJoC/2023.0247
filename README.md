@@ -46,6 +46,14 @@ All of the python scripts were developed in Python 3.8+ environments.
 
 You may need to manually create the folder "raw_data" and or "figures" on your local repo.
 
+## Replicating
+
+- To run the code, you will need to make sure that you have already installed Anaconda3.
+
+## Results
+
+All results have been reported in the paper Section 6 and the Appendix. 
+
 ## Ongoing Development
 
 This code is being developed on an on-going basis at the author-maintained 
