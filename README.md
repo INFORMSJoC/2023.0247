@@ -3,7 +3,8 @@
 # Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions
 
 This archive is distributed in association with the [INFORMS Journal on
-Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](LICENSE).
+Computing](https://pubsonline.informs.org/journal/ijoc) under the [MIT License](LICENSE). This is a code repo for experiments in the paper "Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions'' by Tianyu Wang and Yasong Feng.
+
 
 The software and data in this repository are a snapshot of the software and data
 that were used in the research reported on in the paper 
@@ -34,25 +35,30 @@ Below is the BibTex for citing this snapshot of the respoitory.
 }  
 ```
 
-## Description
-
-This is a code repo for experiments in the paper "Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions'' by Tianyu Wang and Yasong Feng.
-
-The file "exp.ipynb" contains codes for experiments in the main text of the paper, and the file "exp-linesearch.ipynb" contains codes for experiments in the appendix of the paper. 
-
-Running "exp.ipynb" and "exp-linesearch.ipynb" will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" and "plotting-linesearch.ipynb" will save plots in the "figures" folder.
-
-All of the python scripts were developed in Python 3.8+ environments. 
-
-You may need to manually create the folder "raw_data" and or "figures" on your local repo.
-
 ## Replicating
 
-- To run the code, you will need to make sure that you have already installed Anaconda3.
+- To run the code, you will need to make sure that you have already installed [Anaconda3](https://www.anaconda.com/). 
+
+The python script "exp.py" and python notebook "exp.ipynb" contains codes for experiments in the main text of the paper, and the files "exp-linesearch.nb" and "exp-linesearch.ipynb" contain codes for experiments in the appendix of the paper. 
+
+The easiest way to replicate the results in the paper is the following. Directly executing "exp.ipynb" cell-by-cell and "exp-linesearch.ipynb" cell-by-cell will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" cell-by-cell and "plotting-linesearch.ipynb" cell-by-cell will save plots in the "figures" folder. 
+
+The following code block saves the experimental results for the ZGD algorithm on Łojasiewicz functions. 
+
+```
+eta = 0.005
+k = 10
+large = True
+    
+get_res(k, eta, ITER = 15000, large = large) 
+```
+
+In the above code block, eta is the learning rate, k is the number of random directions used for gradient estimation, ITER is the number of iterations, large is a boolean variable describing whether the Łojasiewicz exponent is large or small. When large is True, the objective function is $F_1$ defined in the paper. When large is False, the objective function is $F_2$ defined in the paper.
+
 
 ## Results
 
-All results have been reported in the paper Section 6 and the Appendix. 
+All results have been reported in the paper Section 6 and the Appendix. As an example, running 
 
 ## Ongoing Development
 
