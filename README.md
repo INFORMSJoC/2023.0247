@@ -25,7 +25,7 @@ https://doi.org/10.1287/ijoc.2023.0247.cd
 Below is the BibTex for citing this snapshot of the respoitory.
 
 ```
-@article{wf2024loj,
+@misc{wf2024loj,
   author =        {Tianyu Wang and Yasong Feng},
   publisher =     {INFORMS Journal on Computing},
   title =         {{Convergence Rates of Zeroth-order Gradient Descent for Łojasiewicz Functions}},
