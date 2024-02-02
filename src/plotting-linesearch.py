@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[2]:
@@ -43,7 +43,7 @@ plt.ylim(-30,1)
 
 plt.tight_layout() 
 
-plt.savefig( './figures/theta.png', dpi = 150) 
+plt.savefig( '../figures/theta.png', dpi = 150) 
 
 
 # In[4]:
@@ -63,7 +63,7 @@ plt.ylim(-30,1)
 
 plt.tight_layout()
 
-plt.savefig( './figures./theta2.png', dpi = 150)
+plt.savefig( '../figures/theta2.png', dpi = 150)
 
 
 # # Eigvalues of Q
@@ -71,7 +71,7 @@ plt.savefig( './figures./theta2.png', dpi = 150)
 # In[5]:
 
 
-Q = pickle.load(open('./raw_data/Q','rb')) 
+Q = pickle.load(open('../raw_data/Q','rb')) 
 
 
 # In[6]:
@@ -120,7 +120,7 @@ ax.plot((0), (1), ls="", marker="^", ms=10, color="k",
 
 plt.tight_layout() 
 
-plt.savefig( './figures/toy.png' , dpi = 150)
+plt.savefig( '../figures/toy.png' , dpi = 150)
 
 
 # # in terms of iterations
@@ -132,14 +132,14 @@ plt.savefig( './figures/toy.png' , dpi = 150)
 
 plt.rcParams['font.size'] = 15 
 
-def plot_iter(eta ,k, f = True, small = True): 
+def plot_iter_log(eta ,k, f = True, small = True): 
 
 #     for k in [1,10,20,30]: 
         
     if small: 
-        res = pickle.load(open('./raw_data/newres_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/newres_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
     else: 
-        res = pickle.load(open('./raw_data/newres_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/newres_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
 
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 ) 
@@ -154,9 +154,9 @@ def plot_iter(eta ,k, f = True, small = True):
         plt.fill_between(range(len(m)), m - std, m + std, alpha = 0.4) 
 
     if small: 
-        res = pickle.load(open('./raw_data/res_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
     else: 
-        res = pickle.load(open('./raw_data/res_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/res_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
 
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 ) 
@@ -212,19 +212,19 @@ def plot_iter(eta ,k, f = True, small = True):
     if (small and f): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_f_k{}_expsmall_iter_log.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_f_k{}_expsmall_iter_log.png'.format(k) , dpi = 150)
     elif (small and (not f)): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_x_k{}_expsmall_iter_log.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_x_k{}_expsmall_iter_log.png'.format(k) , dpi = 150)
     elif ((not small) and (not f)): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_x_k{}_explarge_iter_log.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_x_k{}_explarge_iter_log.png'.format(k) , dpi = 150)
     else: 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_f_k{}_explarge_iter_log.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_f_k{}_explarge_iter_log.png'.format(k) , dpi = 150)
         
     plt.clf() 
 
@@ -232,25 +232,25 @@ def plot_iter(eta ,k, f = True, small = True):
 # In[9]:
 
 
-plot_iter(0.005 , 1, f = True, small = True) 
-plot_iter(0.005 , 1, f = False, small = True) 
-plot_iter(0.005 , 1, f = True, small = False) 
-plot_iter(0.005 , 1, f = False, small = False) 
+plot_iter_log(0.005 , 1, f = True, small = True) 
+plot_iter_log(0.005 , 1, f = False, small = True) 
+plot_iter_log(0.005 , 1, f = True, small = False) 
+plot_iter_log(0.005 , 1, f = False, small = False) 
 
-plot_iter(0.005 , 10, f = True, small = True) 
-plot_iter(0.005 , 10, f = False, small = True) 
-plot_iter(0.005 , 10, f = True, small = False) 
-plot_iter(0.005 , 10, f = False, small = False) 
+plot_iter_log(0.005 , 10, f = True, small = True) 
+plot_iter_log(0.005 , 10, f = False, small = True) 
+plot_iter_log(0.005 , 10, f = True, small = False) 
+plot_iter_log(0.005 , 10, f = False, small = False) 
 
-plot_iter(0.005 , 20, f = True, small = True) 
-plot_iter(0.005 , 20, f = False, small = True) 
-plot_iter(0.005 , 20, f = True, small = False) 
-plot_iter(0.005 , 20, f = False, small = False) 
+plot_iter_log(0.005 , 20, f = True, small = True) 
+plot_iter_log(0.005 , 20, f = False, small = True) 
+plot_iter_log(0.005 , 20, f = True, small = False) 
+plot_iter_log(0.005 , 20, f = False, small = False) 
 
-plot_iter(0.005 , 30, f = True, small = True) 
-plot_iter(0.005 , 30, f = False, small = True) 
-plot_iter(0.005 , 30, f = True, small = False) 
-plot_iter(0.005 , 30, f = False, small = False) 
+plot_iter_log(0.005 , 30, f = True, small = True) 
+plot_iter_log(0.005 , 30, f = False, small = True) 
+plot_iter_log(0.005 , 30, f = True, small = False) 
+plot_iter_log(0.005 , 30, f = False, small = False) 
 
 
 # In[15]:
@@ -274,9 +274,9 @@ def plot_iter(eta ,k, f = True, small = True):
 #     for k in [1,10,20,30]: 
         
     if small: 
-        res = pickle.load(open('./raw_data/newres_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/newres_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
     else: 
-        res = pickle.load(open('./raw_data/newres_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/newres_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
 
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 ) 
@@ -291,9 +291,9 @@ def plot_iter(eta ,k, f = True, small = True):
         plt.fill_between(range(len(m)), m - std, m + std, alpha = 0.4) 
 
     if small: 
-        res = pickle.load(open('./raw_data/res_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k, eta),'rb')) 
     else: 
-        res = pickle.load(open('./raw_data/res_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
+        res = pickle.load(open('../raw_data/res_k{0}_eta{1}_explarge'.format(k, eta),'rb')) 
 
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 ) 
@@ -349,19 +349,19 @@ def plot_iter(eta ,k, f = True, small = True):
     if (small and f): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_f_k{}_expsmall_iter.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_f_k{}_expsmall_iter.png'.format(k) , dpi = 150)
     elif (small and (not f)): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_x_k{}_expsmall_iter.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_x_k{}_expsmall_iter.png'.format(k) , dpi = 150)
     elif ((not small) and (not f)): 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_x_k{}_explarge_iter.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_x_k{}_explarge_iter.png'.format(k) , dpi = 150)
     else: 
         plt.tight_layout() 
 #         plt.show()
-        plt.savefig( './figures/lsfig_f_k{}_explarge_iter.png'.format(k) , dpi = 150)
+        plt.savefig( '../figures/lsfig_f_k{}_explarge_iter.png'.format(k) , dpi = 150)
         
     plt.clf() 
 

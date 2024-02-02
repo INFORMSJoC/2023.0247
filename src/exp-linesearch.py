@@ -2,21 +2,9 @@ import numpy as np
 
 import pickle
 
-n = 30
+import argparse
 
-ev = np.random.exponential(5,n)
-
-Q = 0
-
-for i in range(n):
-    
-    v = np.random.normal(0,1,n)
-    v = v/np.linalg.norm(v)
-    
-    Q = Q + ev[i] * np.outer(v,v)
-
-
-# Q = pickle.load(open('./raw_data/Q','rb'))
+Q = pickle.load(open('../raw_data/Q','rb'))
 
 
 def func_large(x):
@@ -128,6 +116,57 @@ def get_res(k,eta,ITER = 10000, large=True, rep = 10 ):
         res_overall.append((x_norms, ys)) 
         
     if large:
-        pickle.dump( res_overall, open('./raw_data/newres_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/newres_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
     else:
-        pickle.dump( res_overall, open('./raw_data/newres_k{0}_eta{1}_expsmall'.format(k,eta),'wb'))  
+        pickle.dump( res_overall, open('../raw_data/newres_k{0}_eta{1}_expsmall'.format(k,eta),'wb'))  
+
+
+if __name__ == '__main__':
+
+    n = 30
+
+    eta = 0.005
+
+    # ev = np.random.exponential(5,n)
+
+    # Q = 0
+
+    # for i in range(n):
+        
+    #     v = np.random.normal(0,1,n)
+    #     v = v/np.linalg.norm(v)
+        
+    #     Q = Q + ev[i] * np.outer(v,v)
+
+    # pickle.dump(Q, open('../raw_data/Q', 'wb'))
+
+    parser = argparse.ArgumentParser(description='')
+    # parser.add_argument('--plain_gd', type = int )
+    parser.add_argument('--k', type = int )
+    parser.add_argument('--large', type = int )
+    args = parser.parse_args() 
+
+    # plain_gd = bool(args.plain_gd)
+
+    k = args.k
+
+    large = bool(args.large)
+
+    # print(plain_gd, k , large)
+    
+    # for k in [1,10,20,30]:
+    
+    # for eta in [0.005]: 
+        
+    #     for large in [True, False]:
+            
+    #         if k == 1:
+        
+    #             get_res(k, eta, ITER = 12000, large = large) 
+            
+    #         else: 
+        
+    #             get_res(k, eta, ITER = 12000, large = large) 
+
+    get_res(k, eta, ITER = 12000, large = large) 
+
