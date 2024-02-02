@@ -68,7 +68,7 @@ python plotting.py
 python plotting-linesearch.py
 ```
 
-The authors recommend replicating the results in the following way. Directly executing "exp.ipynb" cell-by-cell and "exp-linesearch.ipynb" cell-by-cell will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" cell-by-cell and "plotting-linesearch.ipynb" cell-by-cell will save plots in the "figures" folder. 
+The authors strongly recommend replicating the results in the following way. Directly executing "exp.ipynb" cell-by-cell and "exp-linesearch.ipynb" cell-by-cell will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" cell-by-cell and "plotting-linesearch.ipynb" cell-by-cell will save plots in the "figures" folder. 
 
 
 ## Results
