@@ -32,6 +32,7 @@ Below is the BibTex for citing this snapshot of the respoitory.
   year =          {2024},
   doi =           {10.1287/ijoc.2023.0247.cd},
   url =           {https://github.com/INFORMSJoC/2023.0247},
+  note =          {Available for download at https://github.com/INFORMSJoC/2019.0000}
 }  
 ```
 
