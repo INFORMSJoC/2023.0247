@@ -2,21 +2,7 @@ import numpy as np
 
 import pickle
 
-n = 30
-
-ev = np.random.exponential(5,n)
-
-Q = 0
-
-for i in range(n):
-    
-    v = np.random.normal(0,1,n)
-    v = v/np.linalg.norm(v)
-    
-    Q = Q + ev[i] * np.outer(v,v)
-
-
-pickle.dump(Q, open('./raw_data/Q', 'wb'))
+import argparse
 
 
 def func_large(x):
@@ -83,9 +69,9 @@ def get_res(k, eta, ITER = 10000, large=True, rep = 10 ):
         res_overall.append((x_norms, ys))
         
     if large:
-        pickle.dump( res_overall, open('./raw_data/res_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
     else:
-        pickle.dump( res_overall, open('./raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
 
 
 def get_res(k,eta,ITER = 10000, large=True, rep = 10 ): 
@@ -126,9 +112,9 @@ def get_res(k,eta,ITER = 10000, large=True, rep = 10 ):
         res_overall.append((x_norms, ys)) 
         
     if large:
-        pickle.dump( res_overall, open('./raw_data/res_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
     else:
-        pickle.dump( res_overall, open('./raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
 
 
 def get_res_grad(eta,ITER = 10000, large=True, rep = 10 ):
@@ -174,8 +160,75 @@ def get_res_grad(eta,ITER = 10000, large=True, rep = 10 ):
         res_overall.append((x_norms, ys)) 
         
     if large:
-        pickle.dump( res_overall, open('./raw_data/res_gd_eta{}_explarge'.format(eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_gd_eta{}_explarge'.format(eta),'wb')) 
     else:
-        pickle.dump( res_overall, open('./raw_data/res_gd_eta{}_expsmall'.format(eta),'wb')) 
+        pickle.dump( res_overall, open('../raw_data/res_gd_eta{}_expsmall'.format(eta),'wb')) 
 
+    
+if __name__ == '__main__':
+
+    n = 30
+
+    eta = 0.005
+
+    ev = np.random.exponential(5,n)
+
+    Q = 0
+
+    for i in range(n):
         
+        v = np.random.normal(0,1,n)
+        v = v/np.linalg.norm(v)
+        
+        Q = Q + ev[i] * np.outer(v,v)
+
+    pickle.dump(Q, open('../raw_data/Q', 'wb'))
+
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('--plain_gd', type = int )
+    parser.add_argument('--k', type = int )
+    parser.add_argument('--large', type = int )
+    args = parser.parse_args() 
+
+    plain_gd = bool(args.plain_gd)
+
+    k = args.k
+
+    large = bool(args.large)
+
+    # print(plain_gd, k , large)
+
+    if (plain_gd == 1):
+
+        get_res_grad( eta, ITER = 15000, large = large) 
+
+    else:
+        
+        # print("running ZGD with k = {0} on the ")
+
+        get_res(k, eta, ITER = 15000, large = large) 
+
+
+    # for k in [1,10,20,30]: 
+    
+    #     for eta in [0.005]: 
+            
+    #         for large in [True, False]: 
+                
+    #             if k == 1:
+            
+    #                 get_res(k, eta, ITER = 15000, large = large) 
+                
+    #             else:
+            
+    #                 get_res(k, eta, ITER = 15000, large = large) 
+
+
+    # for eta in [ 0.005]: 
+
+    #     for large in [True, False]: 
+
+    #         get_res_grad( eta, ITER = 15000, large = large) 
+
+
+    # model_schema(workspace=args.workspace, schema=args.schema, dem=args.dem)
