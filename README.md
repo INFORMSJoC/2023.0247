@@ -40,7 +40,7 @@ Below is the BibTex for citing this snapshot of the respoitory.
 
 - To run the code, you will need to make sure that you have already installed [Anaconda3](https://www.anaconda.com/). 
 
-The python script "exp.py" and python notebook "exp.ipynb" contain codes for experiments in the main text of the paper, and the files "exp-linesearch.nb" and "exp-linesearch.ipynb" contain codes for experiments in the appendix of the paper. 
+The file "exp.py" contains code for experiments in the main text of the paper, and the file "exp-linesearch.ny" contains codes for experiments in the appendix of the paper. 
 
 The following code block is an example for running the Zeroth-order Gradient Descent (ZGD) algorithm on a Łojasiewicz function. 
 
