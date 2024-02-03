@@ -12,7 +12,7 @@ plt.rcParams['font.size'] = 15
 # plot the linesearch results in log scale. 
 
 # parameters: 
-## eta: learning rate, all learning rate is set to 0.005
+## eta: learning rate, learning rate is set to 0.005 for all experiments in the paper. 
 ## k: number of random directions. should be one of {1,10,20,30}. 
 ## f: When set to True, the y-axis is set to function value f(x). 
 ##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
@@ -116,7 +116,7 @@ plt.rcParams['font.size'] = 15
 # plot the linesearch results in linear scale
 
 # parameters: 
-## eta: learning rate, all learning rate is set to 0.005
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
 ## k: number of random directions. should be one of {1,10,20,30}. 
 ## f: When set to True, the y-axis is set to function value f(x). 
 ##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
