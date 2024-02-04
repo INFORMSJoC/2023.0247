@@ -166,7 +166,6 @@ if __name__ == '__main__':
     eta = 0.005
 
     parser = argparse.ArgumentParser(description='')
-    # parser.add_argument('--plain_gd', type = int )
     parser.add_argument('--k', type = int )
     parser.add_argument('--large', type = int )
     args = parser.parse_args() 
