@@ -4,15 +4,25 @@ import pickle
 
 import argparse
 
+# the function func_large is F_1 defined in the paper.  
 
 def func_large(x):
     
     return ( np.dot(x, np.matmul(Q,x) ))*(3./4)
 
+
+# the function func_small is F_2 defined in the paper.  
+
 def func_small(x):
     
     return ( np.dot(x, np.matmul(Q,x) ))*(1./4)
 
+
+# the function sample_stiefel returns a random k-frame.  
+
+# parameters: 
+## n: ambient dimension. k = 30 for all experiments in the paper. 
+## k: number of random directions. should be one of {1,10,20,30}. 
 
 def sample_stiefel(n,k): 
     
@@ -23,6 +33,15 @@ def sample_stiefel(n,k):
     U_ = np.matmul( np.matmul(L, np.diag( S**(-1./2) ) ), R ) 
         
     return np.matmul(U,U_) 
+
+
+# the function get_grad_est returns a gradient estimator.  
+
+# parameters: 
+## func: the objective functions. 
+## n: ambient dimension. k = 30 for all experiments in the paper. 
+## k: number of random directions. should be one of {1,10,20,30}. 
+## delta: finite difference granularity. 
 
 
 def get_grad_est(func,x,n,k, delta):
@@ -40,38 +59,15 @@ def get_grad_est(func,x,n,k, delta):
     return res
 
 
-# ITER = 10000
-# k = 80
+# the function get_res returns results for ZGD on a Lojasiewicz function in log scale. 
 
-def get_res(k, eta, ITER = 10000, large=True, rep = 10 ):
-
-    res_overall = []
-    
-    for _ in range(rep): 
-        
-        x = np.random.normal(0,1,d)
-
-        delta = 0.1
-
-        x_norms = [np.linalg.norm(x)]
-
-        ys = [func(x)]
-
-        for i in range(ITER): 
-
-            x = x - eta * get_grad_est(func,x,n,k,delta)
-
-            x_norms.append(np.linalg.norm(x)) 
-            ys.append(func(x)) 
-
-            delta = np.max([ 0.0001, delta/2.]) 
-            
-        res_overall.append((x_norms, ys))
-        
-    if large:
-        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_explarge'.format(k,eta),'wb')) 
-    else:
-        pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
+# parameters: 
+## k: number of random directions. should be one of {1,10,20,30}. 
+## eta: learning rate, learning rate is set to 0.005 for all experiments in the paper. 
+## ITER: number of total iterations. 
+## large: when set to True, the objective function is F_1 defined in the paper. 
+##        when set to False, the objective function is F_2 defined in the paper. 
+## rep: repeat the experiments for "rep" number of times. By default, rep is set to 10. 
 
 
 def get_res(k,eta,ITER = 10000, large=True, rep = 10 ): 
@@ -116,6 +112,15 @@ def get_res(k,eta,ITER = 10000, large=True, rep = 10 ):
     else:
         pickle.dump( res_overall, open('../raw_data/res_k{0}_eta{1}_expsmall'.format(k,eta),'wb')) 
 
+
+# the function get_res_gred returns results for GD on a Lojasiewicz function in log scale. 
+
+# parameters: 
+## eta: learning rate, learning rate is set to 0.005 for all experiments in the paper. 
+## ITER: number of total iterations. 
+## large: when set to True, the objective function is F_1 defined in the paper. 
+##        when set to False, the objective function is F_2 defined in the paper. 
+## rep: repeat the experiments for "rep" number of times. By default, rep is set to 10. 
 
 def get_res_grad(eta,ITER = 10000, large=True, rep = 10 ):
 
@@ -196,39 +201,12 @@ if __name__ == '__main__':
 
     large = bool(args.large)
 
-    # print(plain_gd, k , large)
 
     if (plain_gd == 1):
 
         get_res_grad( eta, ITER = 15000, large = large) 
 
     else:
-        
-        # print("running ZGD with k = {0} on the ")
 
         get_res(k, eta, ITER = 15000, large = large) 
 
-
-    # for k in [1,10,20,30]: 
-    
-    #     for eta in [0.005]: 
-            
-    #         for large in [True, False]: 
-                
-    #             if k == 1:
-            
-    #                 get_res(k, eta, ITER = 15000, large = large) 
-                
-    #             else:
-            
-    #                 get_res(k, eta, ITER = 15000, large = large) 
-
-
-    # for eta in [ 0.005]: 
-
-    #     for large in [True, False]: 
-
-    #         get_res_grad( eta, ITER = 15000, large = large) 
-
-
-    # model_schema(workspace=args.workspace, schema=args.schema, dem=args.dem)
