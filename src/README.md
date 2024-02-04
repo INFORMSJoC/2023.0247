@@ -1,5 +1,15 @@
 
-# Code structure 
+# Documentation
+
+All the commands for experiments in the paper are contained in the "run.bash" file. So to reproduce the results in the paper, please run
+
+'''
+bash run.bash
+python plotting.py
+python plotting-linesearch.py
+'''
+
+Please also see the comments in source code files. 
 
 ## In the file "exp.py"
 
@@ -8,7 +18,7 @@
 - the function sample_stiefel returns a random k-frame.  
   - parameters: 
     - n: ambient dimension. k = 30 for all experiments in the paper. 
-    - k: number of random directions. should be one of {1,10,20,30}.
+    - k: number of random directions. should be one of {1,10,20,30}. 
       
 - the function get_grad_est returns a gradient estimator.  
   - parameters: 
