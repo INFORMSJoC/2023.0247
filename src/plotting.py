@@ -93,6 +93,13 @@ plt.savefig( '../figures/toy.png' , dpi = 150)
 
 # plot the convergence results in terms of iterations - log scale
 
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
+
 plt.rcParams['font.size'] = 15 
 
 def plot_iter_log(eta , f = True, small = True): 
@@ -178,6 +185,13 @@ plot_iter_log(0.005 , f = False, small = False)
 
 # plot the convergence results in terms of iterations - linear scale
 
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
+
 plt.rcParams['font.size'] = 15 
 
 def plot_iter(eta , f = True, small = True): 
@@ -261,6 +275,14 @@ plt.rcParams['font.size'] = 15
 
 
 # plot the convergence results in terms of samples - log scale
+
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
+
 
 def plot_sample_log(eta , f = True, small = True): 
     
