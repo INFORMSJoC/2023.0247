@@ -1,7 +1,5 @@
 import numpy as np
-
 import pickle
-
 import argparse
 
 # load the matrix Q as a global variable 
@@ -172,8 +170,6 @@ if __name__ == '__main__':
     parser.add_argument('--k', type = int )
     parser.add_argument('--large', type = int )
     args = parser.parse_args() 
-
-    # plain_gd = bool(args.plain_gd)
 
     k = args.k
 
