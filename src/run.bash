@@ -16,3 +16,6 @@ python exp-linesearch.py --k 1 --large 1
 python exp-linesearch.py --k 10 --large 1 
 python exp-linesearch.py --k 20 --large 1 
 python exp-linesearch.py --k 30 --large 1 
+
+python plotting.py
+python plotting-linesearch.py
