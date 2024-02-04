@@ -3,11 +3,11 @@
 
 All the commands for experiments in the paper are contained in the "run.bash" file. So to reproduce the results in the paper, please run
 
-'''
+```
 bash run.bash
 python plotting.py
 python plotting-linesearch.py
-'''
+```
 
 Please also see the comments in source code files. 
 
