@@ -54,8 +54,6 @@
   - rep: repeat the experiments for "rep" number of times. By default, rep is set to 10. 
 
 
-
-
 ## In the file "plotting.py"
 
 
@@ -85,10 +83,18 @@
     - f: When set to True, the y-axis is set to function value $f(x)$. When set to False, the y-axis is set to $\| x - x^* \|$, which is $\| x \|$ for the experiments in the paper.
     - small: when set to True, the objective function is $F_2$ defined in the paper. when set to False, the objective function is $F_1$ defined in the paper. 
 
+## In the file "plotting-linesearch.py"
 
+- the function plot_iter_log plots the convergence results (of ZGD with line search) in terms of iterations in log scale.
+  - parameters:
+    - eta: learning rate, learning rate is set to 0.005 for all experiments in the paper.
+    - k: number of random directions. should be one of {1,10,20,30}.
+    - f: When set to True, the y-axis is set to function value f(x). When set to False, the y-axis is set to $\| x - x^* \|$, which is $\| x \|$ for the experiments in the paper.
+    - small: when set to True, the objective function is $F_2$ defined in the paper. when set to False, the objective function is $F_1$ defined in the paper. 
 
-
-
-
-
-
+- the function plot_iter plots the convergence results (of ZGD with line search) in terms of iterations in linear scale.
+  - parameters:
+    - eta: learning rate, all learning rate is set to 0.005 for experiments in the paper.
+    - k: number of random directions. should be one of {1,10,20,30}.
+    - f: When set to True, the y-axis is set to function value f(x). When set to False, the y-axis is set to $\| x - x^* \|$, which is $\| x \|$ for the experiments in the paper.
+    - small: when set to True, the objective function is $F_2$ defined in the paper. when set to False, the objective function is $F_1$ defined in the paper. 
