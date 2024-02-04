@@ -107,7 +107,7 @@ def linsearch(x,eta,grad,eps,large):
 
 
 
-# the function get_res returns results for ZGD on a Lojasiewicz function in log scale. 
+# the function get_res_ls returns results for ZGD on a Lojasiewicz function in log scale. 
 
 # parameters: 
 ## k: number of random directions. should be one of {1,10,20,30}. 
@@ -117,7 +117,7 @@ def linsearch(x,eta,grad,eps,large):
 ##        when set to False, the objective function is F_2 defined in the paper. 
 ## rep: repeat the experiments for "rep" number of times. By default, rep is set to 10. 
 
-def get_res(k,eta,ITER = 10000, large=True, rep = 10 ): 
+def get_res_ls(k,eta,ITER = 10000, large=True, rep = 10 ): 
 
     res_overall = [] 
     
@@ -175,5 +175,5 @@ if __name__ == '__main__':
 
     large = bool(args.large)
 
-    get_res(k, eta, ITER = 12000, large = large) 
+    get_res_ls(k, eta, ITER = 12000, large = large) 
 
