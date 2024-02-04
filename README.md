@@ -69,9 +69,6 @@ python plotting.py
 python plotting-linesearch.py
 ```
 
-The authors strongly recommend replicating the results in the following way. Directly executing "exp.ipynb" cell-by-cell and "exp-linesearch.ipynb" cell-by-cell will create raw data in the "raw_data" folder. After the raw data are in place, running "plotting.ipynb" cell-by-cell and "plotting-linesearch.ipynb" cell-by-cell will save plots in the "figures" folder. 
-
-
 ## Results
 
 All results have been reported in the paper Section 6 and the Appendix. As an example, running the codes with large = True, eta = 0.005, and k = 1,10,20,30 gives the following figure. In the figure, lines labelled "k = 1" (resp., k = 10,20,30) plots the results of ZGD with k = 1 (resp. k=10,20,30), and the line labelled "GD" plots the results of gradient descent. 
