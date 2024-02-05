@@ -75,7 +75,6 @@ All results have been reported in the paper Section 6 and the Appendix. As an ex
 
 ![example](./example.png)
 
-Users are highly recommended to use iterative python notebook for figure plotting. 
 
 ## Ongoing Development
 
