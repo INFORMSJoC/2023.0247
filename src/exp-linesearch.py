@@ -1,20 +1,29 @@
 import numpy as np
-
 import pickle
-
 import argparse
 
+# load the matrix Q as a global variable 
 Q = pickle.load(open('../raw_data/Q','rb'))
 
+
+# the function func_large is F_1 defined in the paper.  
 
 def func_large(x):
     
     return ( np.dot(x, np.matmul(Q,x) ))*(3./4)
 
+
+# the function func_small is F_2 defined in the paper.  
+
 def func_small(x):
     
     return ( np.dot(x, np.matmul(Q,x) ))*(1./4)
 
+# the function sample_stiefel returns a random k-frame.  
+
+# parameters: 
+## n: ambient dimension. k = 30 for all experiments in the paper. 
+## k: number of random directions. should be one of {1,10,20,30}. 
 
 def sample_stiefel(n,k): 
     
@@ -26,6 +35,14 @@ def sample_stiefel(n,k):
         
     return np.matmul(U,U_) 
 
+
+# the function get_grad_est returns a gradient estimator.  
+
+# parameters: 
+## func: the objective functions. 
+## n: ambient dimension. k = 30 for all experiments in the paper. 
+## k: number of random directions. should be one of {1,10,20,30}. 
+## delta: finite difference granularity. 
 
 def get_grad_est(x,n,k, delta,large):
     
@@ -46,6 +63,18 @@ def get_grad_est(x,n,k, delta,large):
     
     return res
 
+
+# the function linesearch returns the next iterate point using binary linesearch. 
+
+# parameters: 
+## x: the current iterate. 
+## eta: learning rate, learning rate is set to 0.005 for all experiments in the paper. 
+## grad: the direction along which linesearch is performed. 
+## eps: linesearch tolerance. If the distance between two consecutive points between the binary linesearch procedure
+##      is less then eps, then terminate. 
+## large: when set to True, the objective function is F_1 defined in the paper. 
+##        when set to False, the objective function is F_2 defined in the paper. 
+
 def linsearch(x,eta,grad,eps,large):
     
     if large:
@@ -58,8 +87,6 @@ def linsearch(x,eta,grad,eps,large):
     z_plus = x - eta * grad 
     
     while (np.linalg.norm(z_plus - z_minus) > eps):
-        
-#         print(np.linalg.norm(z_plus - z_minus))
     
         z_mid = (z_minus + z_plus) / 2.
         
@@ -78,7 +105,19 @@ def linsearch(x,eta,grad,eps,large):
             
     return z_plus
 
-def get_res(k,eta,ITER = 10000, large=True, rep = 10 ): 
+
+
+# the function get_res_ls returns results for ZGD on a Lojasiewicz function in log scale. 
+
+# parameters: 
+## k: number of random directions. should be one of {1,10,20,30}. 
+## eta: learning rate, learning rate is set to 0.005 for all experiments in the paper. 
+## ITER: number of total iterations. 
+## large: when set to True, the objective function is F_1 defined in the paper. 
+##        when set to False, the objective function is F_2 defined in the paper. 
+## rep: repeat the experiments for "rep" number of times. By default, rep is set to 10. 
+
+def get_res_ls(k,eta,ITER = 10000, large=True, rep = 10 ): 
 
     res_overall = [] 
     
@@ -101,8 +140,7 @@ def get_res(k,eta,ITER = 10000, large=True, rep = 10 ):
         for i in range(ITER): 
             
             grad = get_grad_est(x,n,k,delta,large) 
-            x = linsearch(x,0.01,grad,0.0001,large) 
-#             x = x - eta * get_grad_est(x,n,k,delta) 
+            x = linsearch(x,0.5,grad,0.0001,large) 
 
             x_norms.append(np.linalg.norm(x)) 
             
@@ -127,46 +165,14 @@ if __name__ == '__main__':
 
     eta = 0.005
 
-    # ev = np.random.exponential(5,n)
-
-    # Q = 0
-
-    # for i in range(n):
-        
-    #     v = np.random.normal(0,1,n)
-    #     v = v/np.linalg.norm(v)
-        
-    #     Q = Q + ev[i] * np.outer(v,v)
-
-    # pickle.dump(Q, open('../raw_data/Q', 'wb'))
-
     parser = argparse.ArgumentParser(description='')
-    # parser.add_argument('--plain_gd', type = int )
     parser.add_argument('--k', type = int )
     parser.add_argument('--large', type = int )
     args = parser.parse_args() 
-
-    # plain_gd = bool(args.plain_gd)
 
     k = args.k
 
     large = bool(args.large)
 
-    # print(plain_gd, k , large)
-    
-    # for k in [1,10,20,30]:
-    
-    # for eta in [0.005]: 
-        
-    #     for large in [True, False]:
-            
-    #         if k == 1:
-        
-    #             get_res(k, eta, ITER = 12000, large = large) 
-            
-    #         else: 
-        
-    #             get_res(k, eta, ITER = 12000, large = large) 
-
-    get_res(k, eta, ITER = 12000, large = large) 
+    get_res_ls(k, eta, ITER = 12000, large = large) 
 

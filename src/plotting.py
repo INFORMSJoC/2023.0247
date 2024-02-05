@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import numpy as np
 
 import pickle
 
 import matplotlib.pyplot as plt 
-# get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# In[2]:
-
-
+# first of all plot the theoretical convergence curve. save them in "theta.png" and "theta2.png" 
 thetas = np.arange(0.50001,1,0.0001) 
-
-# xs = 
 
 rate_y = 1 / (1-2*thetas) 
 
@@ -25,8 +18,6 @@ rate_x = (1-thetas) / (1-2*thetas)
 
 gap = thetas / (1-2*thetas) 
 
-
-# In[3]:
 
 
 plt.rcParams['font.size'] = 15 
@@ -46,8 +37,6 @@ plt.tight_layout()
 plt.savefig( '../figures/theta.png', dpi = 150) 
 
 
-# In[4]:
-
 
 plt.rcParams['font.size'] = 15
 
@@ -66,27 +55,11 @@ plt.tight_layout()
 plt.savefig( '../figures/theta2.png', dpi = 150)
 
 
-# # Eigvalues of Q
-
-# In[5]:
-
+# load the matrix Q
 
 Q = pickle.load(open('../raw_data/Q','rb')) 
 
 
-# In[6]:
-
-
-plt.hist( np.linalg.eig(Q)[0] , bins = 30 )
-
-
-# # the toy function
-
-# In[7]:
-
-
-import numpy as np
-import matplotlib.pyplot as plt
 
 x = np.arange(-200,200,0.01)
 y = np.sqrt(np.abs(x))
@@ -97,11 +70,8 @@ rc = {"xtick.direction" : "inout", "ytick.direction" : "inout",
 plt.rcParams['font.size'] = 15 
 plt.rcParams['figure.figsize'] = 8,3.5
 
-# with plt.rc_context(rc):
 fig, ax = plt.subplots()
 ax.plot(x, y) 
-
-# plt.ylim(0,100)
 
 ax.spines['left'].set_position('zero')
 ax.spines['right'].set_visible(False)
@@ -116,19 +86,19 @@ ax.plot((1), (0), ls="", marker=">", ms=10, color="k",
 ax.plot((0), (1), ls="", marker="^", ms=10, color="k",
         transform=ax.get_xaxis_transform(), clip_on=False)
 
-# plt.show()
-
 plt.tight_layout() 
 
 plt.savefig( '../figures/toy.png' , dpi = 150)
 
 
-# # in terms of iterations -log scale
+# plot the convergence results in terms of iterations - log scale
 
-# In[8]:
-
-
-# res[1] 
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
 
 plt.rcParams['font.size'] = 15 
 
@@ -163,7 +133,6 @@ def plot_iter_log(eta , f = True, small = True):
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 )
         std = np.std( np.array( res )[:,1,:] , axis = 0 )
-#             l = 
         plt.plot( m , label = 'GD' ) 
         plt.fill_between(range(len(m)), m - std, m + std, alpha = 0.4)
 
@@ -190,8 +159,6 @@ def plot_iter_log(eta , f = True, small = True):
         plt.xlim([-100, 10000]) 
         plt.ylim([-1, 6.5]) 
         
-
-#     plt.tight_layout() 
     
     if (small and f): 
         plt.tight_layout() 
@@ -209,8 +176,6 @@ def plot_iter_log(eta , f = True, small = True):
     plt.clf() 
 
 
-# In[9]:
-
 
 plot_iter_log(0.005 , f = True, small = True) 
 plot_iter_log(0.005 , f = False, small = True) 
@@ -218,11 +183,14 @@ plot_iter_log(0.005 , f = True, small = False)
 plot_iter_log(0.005 , f = False, small = False) 
 
 
-# # in terms of iterations -linear scale
+# plot the convergence results in terms of iterations - linear scale
 
-# In[10]:
-
-
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
 
 plt.rcParams['font.size'] = 15 
 
@@ -257,7 +225,6 @@ def plot_iter(eta , f = True, small = True):
     if f: 
         m = np.mean( np.array( res )[:,1,:] , axis = 0 )
         std = np.std( np.array( res )[:,1,:] , axis = 0 )
-#             l = 
         plt.plot( m , label = 'GD' ) 
         plt.fill_between(range(len(m)), m - std, m + std, alpha = 0.4)
 
@@ -267,8 +234,6 @@ def plot_iter(eta , f = True, small = True):
 
         plt.plot( m , label = 'GD' ) 
         plt.fill_between(range(len(m)), m - std, m + std, alpha = 0.4)
-    
-#     plt.gca().set_yscale('log')
     
     plt.legend() 
 
@@ -283,9 +248,6 @@ def plot_iter(eta , f = True, small = True):
         plt.ylabel(r'$\| x \|$') 
         plt.xlim([-100, 10000]) 
         plt.ylim([-1, 6.5]) 
-        
-
-#     plt.tight_layout() 
     
     if (small and f): 
         plt.tight_layout() 
@@ -303,30 +265,24 @@ def plot_iter(eta , f = True, small = True):
     plt.clf() 
 
 
-# In[11]:
-
-
 plot_iter(0.005 , f = True, small = True) 
 plot_iter(0.005 , f = False, small = True) 
 plot_iter(0.005 , f = True, small = False) 
 plot_iter(0.005 , f = False, small = False) 
 
 
-# In[12]:
-
-
-# plot_iter_compare(0.001 , f = True, small = True) 
-# plot_iter_compare(0.001 , f = False, small = True) 
-# plot_iter_compare(0.001 , f = True, small = False) 
-# plot_iter_compare(0.001 , f = False, small = False) 
-
-
-# # in terms of sample complexity - log scale
-
-# In[13]:
-
-
 plt.rcParams['font.size'] = 15 
+
+
+# plot the convergence results in terms of samples - log scale
+
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
+
 
 def plot_sample_log(eta , f = True, small = True): 
     
@@ -382,13 +338,10 @@ def plot_sample_log(eta , f = True, small = True):
     if f: 
         plt.ylabel(r'$f(x)$') 
         plt.xlim([-50, 5000]) 
-#         plt.ylim([-10, 50]) 
         
     else: 
         plt.ylabel(r'$\| x \|$') 
         plt.xlim([-100, 10000]) 
-#         plt.ylim([0, 15]) 
-
     plt.tight_layout() 
     
     if (small and f): 
@@ -402,19 +355,16 @@ def plot_sample_log(eta , f = True, small = True):
         
     plt.clf() 
 
-
-# In[14]:
-
-
-
-
-
-# # in terms of sample complexity - linear scale
-
-# In[15]:
-
-
 plt.rcParams['font.size'] = 15 
+
+# plot the convergence results in terms of samples - linear scale
+
+# parameters: 
+## eta: learning rate, all learning rate is set to 0.005 for experiments in the paper. 
+## f: When set to True, the y-axis is set to function value f(x). 
+##    When set to False, the y-axis is set to \| x - x^* \|, which is \| \x \| for the experiments in the paper. 
+## small: when set to True, the objective function is F_2 defined in the paper. 
+##        when set to False, the objective function is F_1 defined in the paper. 
 
 def plot_sample(eta , f = True, small = True): 
     
@@ -462,21 +412,16 @@ def plot_sample(eta , f = True, small = True):
             plt.fill_between(range(len(m_aug)), np.array(m_aug) - np.array(std_aug), np.array(m_aug) + np.array(std_aug), alpha = 0.4 ) 
 
     plt.legend() 
-    
-#     plt.gca().set_yscale('log')
 
     plt.xlabel('Number of Function Evaluations') 
     
     if f: 
         plt.ylabel(r'$f(x)$') 
         plt.xlim([-50, 5000]) 
-#         plt.ylim([-10, 50]) 
         
     else: 
         plt.ylabel(r'$\| x \|$') 
         plt.xlim([-100, 10000]) 
-#         plt.ylim([0, 15]) 
-
     plt.tight_layout() 
     
     if (small and f): 
@@ -491,8 +436,6 @@ def plot_sample(eta , f = True, small = True):
     plt.clf() 
 
 
-# In[16]:
-
 plot_sample_log(0.005 , f = True, small = True) 
 plot_sample_log(0.005 , f = False, small = True) 
 plot_sample_log(0.005 , f = True, small = False) 
@@ -503,21 +446,6 @@ plot_sample(0.005 , f = True, small = True)
 plot_sample(0.005 , f = False, small = True) 
 plot_sample(0.005 , f = True, small = False) 
 plot_sample(0.005 , f = False, small = False) 
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
