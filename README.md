@@ -32,7 +32,7 @@ Below is the BibTex for citing this snapshot of the respoitory.
   year =          {2024},
   doi =           {10.1287/ijoc.2023.0247.cd},
   url =           {https://github.com/INFORMSJoC/2023.0247},
-  note =          {Available for download at https://github.com/INFORMSJoC/2019.0000}
+  note =          {Available for download at https://github.com/INFORMSJoC/2023.0247}
 }  
 ```
 
@@ -75,7 +75,6 @@ All results have been reported in the paper Section 6 and the Appendix. As an ex
 
 ![example](./example.png)
 
-Users are highly recommended to use iterative python notebook for figure plotting. 
 
 ## Ongoing Development
 
